@@ -7,6 +7,9 @@ const { app, BrowserWindow, Menu, ipcMain } = electron;
 let mainWindow;
 let addWindow;
 
+// Set ENV
+process.env.NODE_ENV = 'production';
+
 // Listen for app to be ready
 app.on('ready', () => {
 	// Create new window
