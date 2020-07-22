@@ -5,18 +5,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add Shopping List Item</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 
 <body>
-  <form id="addItemForm">
-    <div>
-      <label for="item">Enter Item</label>
-      <input type="text" id="item" autofocus>
-    </div>
-    <div>
-      <button type="submit">Add Item</button>
-    </div>
-  </form>
+  <div class="container" style="margin-top: 1rem;">
+    <form id="addItemForm">
+      <div>
+        <label for="item">Enter Item</label>
+        <input type="text" id="item" autofocus>
+      </div>
+      <div>
+        <button type="submit" class="btn wawes-effect wawes-light">Add Item</button>
+      </div>
+    </form>
+  </div>
 
   <script>
     const electron = require('electron');

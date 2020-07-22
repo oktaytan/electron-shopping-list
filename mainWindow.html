@@ -5,13 +5,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Shopping List</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <style>
+    .list_item {
+      cursor: pointer;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    }
+  </style>
 </head>
 
 <body>
-  <h1>Shopping List</h1>
-  <ul id="shoppingList">
+  <nav>
+    <div class="nav-wrapper teal">
+      <a class="brand-logo center">Shopping List</a>
+    </div>
+  </nav>
 
-  </ul>
+  <div class="container" style="margin-top: 2rem;">
+    <ul id="shoppingList">
+
+    </ul>
+  </div>
 
   <script>
     const electron = require('electron');
@@ -21,7 +35,9 @@
 
     //  Add item
     ipcRenderer.on('item:add', function (err, item) {
+      list.className = 'collection';
       const li = document.createElement('li');
+      li.className = 'collection-item list_item';
       const itemText = document.createTextNode(item);
       li.appendChild(itemText);
       list.appendChild(li);
@@ -30,7 +46,18 @@
     // Clear shopping list
     ipcRenderer.on('item:clear', (err) => {
       list.innerHTML = '';
+      list.className = '';
     })
+
+    // Remove item
+    list.addEventListener('dblclick', removeItem);
+
+    function removeItem(e) {
+      e.target.remove();
+      if (list.children.length == 0) {
+        list.className = '';
+      }
+    }
   </script>
 </body>
 
