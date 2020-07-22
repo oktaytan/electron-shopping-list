@@ -9,6 +9,29 @@
 
 <body>
   <h1>Shopping List</h1>
+  <ul id="shoppingList">
+
+  </ul>
+
+  <script>
+    const electron = require('electron');
+    const { ipcRenderer } = electron;
+
+    const list = document.querySelector('#shoppingList');
+
+    //  Add item
+    ipcRenderer.on('item:add', function (err, item) {
+      const li = document.createElement('li');
+      const itemText = document.createTextNode(item);
+      li.appendChild(itemText);
+      list.appendChild(li);
+    })
+
+    // Clear shopping list
+    ipcRenderer.on('item:clear', (err) => {
+      list.innerHTML = '';
+    })
+  </script>
 </body>
 
 </html>
